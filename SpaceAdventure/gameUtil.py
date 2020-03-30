@@ -108,6 +108,12 @@ def explosion(screen, enemy):
     pygame.display.update()
 
 
+def is_player_dead(enemies, player):
+    for enemy in enemies:
+        if enemy.get_pos()[1] >= player.get_pos()[1]:
+            return True
+
+
 # Vehicle Functionalities
 class Player:
     def __init__(self):
@@ -126,16 +132,16 @@ class Player:
 
     # Movement Control Functions
     def go_left(self):
-        self.__change_x -= 6
+        self.__change_x -= 1
 
     def go_right(self):
-        self.__change_x += 6
+        self.__change_x += 1
 
     def go_up(self):
-        self.__change_y -= 6
+        self.__change_y -= 1
 
     def go_down(self):
-        self.__change_y += 6
+        self.__change_y += 1
 
     def stop_player(self):
         self.__change_x = 0
@@ -198,7 +204,7 @@ class Bullet:
         screen.blit(self.__image, (self.__bullet_x, self.__bullet_y))
 
     def __move_bullet(self):
-        self.__bullet_y -= 10
+        self.__bullet_y -= 14
 
     def get_pos(self):
         return self.__bullet_x, self.__bullet_y

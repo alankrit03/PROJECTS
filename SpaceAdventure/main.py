@@ -38,10 +38,14 @@ while running:
         if event.type == pygame.KEYUP:
             gameUtil.key_up_movement(event, player1)
 
-    player1.show_player(screen)
+    if gameUtil.is_player_dead(enemies, player1):
+        running = False
+
     gameUtil.show_enemies(screen, enemies)
     gameUtil.show_bullets(screen, bullets)
     gameUtil.check_collisions(screen, bullets, enemies, player1)
+
+    player1.show_player(screen)
     gameUtil.scoreboard(screen, player1)
     pygame.display.update()
 
